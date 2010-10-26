@@ -1,8 +1,9 @@
 #include "mirror.hpp"
-#include "../x11mirror.hpp"
 
 #include <QApplication>
 #include <QDebug>
+
+#include "../x11mirror.hpp"
 
 Mirror::Mirror()
     : QWidget()
