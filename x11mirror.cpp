@@ -8,8 +8,9 @@
 
 static QCoreApplication::EventFilter oldEventFilter = NULL;
 
-X11Mirror::X11Mirror(Qt::HANDLE windowId, QObject *parent)
+X11Mirror::X11Mirror(Qt::HANDLE winId, QObject *parent)
     : QObject(parent)
+    , windowId(winId)
 {
     if (!oldEventFilter)
     {
@@ -29,6 +30,8 @@ bool X11Mirror::x11EventFilter(void *message, long *result)
     if (event->type == damageEventBase + XDamageNotify)
     {
         XDamageNotifyEvent *e = reinterpret_cast<XDamageNotifyEvent *>(event);
+        qDebug("damaged");
     }
-}
 
+    return false;
+}
