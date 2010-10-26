@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+union _XEvent;
+
 class X11Mirror: public QObject
 {
     Q_OBJECT
@@ -15,7 +17,9 @@ private:
     static int eventBase;
     static int damageEventBase;
 
-    static bool x11EventFilter(void *message, long *result);
+    void x11EventFilter(_XEvent *event);
+
+    friend bool eventFilter(void *message, long *result);
 };
 
 #endif
